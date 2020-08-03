@@ -214,7 +214,7 @@ p {
   width: 300px;
   height: auto;
   min-height: 420px;
-  /* margin-right: 35px; */
+  margin-right: 35px;
   /* background-color: white; */
   padding: 54px 34px 44px;
 }

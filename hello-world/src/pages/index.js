@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import Laptop from "../images/mini-profile-bg-01.jpg"
 import Pot from "../images/mini-profile-bg-02.jpg"
 // import logo from './logo.svg';
@@ -250,10 +250,27 @@ function HomePage({ modal, showModal }) {
 }
 
 const Carousel = () => {
+  const [translate, setTranslate] = useState(0)
+  const [itemWidth, setItemWidth] = useState(300)
+  const carouselRef = useRef(null)
+  const slideLeft = () => setTranslate(translate + 100)
+  const slideRight = () => setTranslate(translate - 100)
+  useEffect(() => {
+    setItemWidth((carouselRef?.current?.clientWidth - 105) / 3)
+  })
   return (
     <div className="row">
-      <div className="col-12" style={{ marginBottom: "80px" }}>
-        <div style={{ overflowX: "auto" }}>
+      <div
+        ref={carouselRef}
+        className="col-12 p-0"
+        style={{ marginBottom: "80px", overflowX: `hidden`, margin: `0 15px` }}
+      >
+        <div
+          style={{
+            transform: `translateX(${translate}%)`,
+            transition: `transform 500ms ease`,
+          }}
+        >
           <div
             className="tm-contact-items-container"
             style={{ width: "max-content" }}
@@ -262,6 +279,7 @@ const Carousel = () => {
               <div
                 key={key}
                 className="tm-contact-item tm-bg-white-transparent"
+                style={{ width: `${itemWidth || 300}px` }}
               >
                 <i className="fas fa-5x fa-briefcase tm-contact-item-icon"></i>
                 <p className="mb-0">{project.desc}</p>
@@ -287,6 +305,7 @@ const Carousel = () => {
                 textAlign: "center",
                 cursor: "pointer",
               }}
+              onClick={slideLeft}
             >
               &lt;
             </div>
@@ -298,6 +317,7 @@ const Carousel = () => {
                 textAlign: "center",
                 cursor: "pointer",
               }}
+              onClick={slideRight}
             >
               &gt;
             </div>
