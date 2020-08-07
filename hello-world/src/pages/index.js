@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import Laptop from "../images/mini-profile-bg-01.jpg"
 import Pot from "../images/mini-profile-bg-02.jpg"
+import app from "../images/app.gif"
 // import logo from './logo.svg';
 // import './App.css';
 const MAX_ITEMS = 3
@@ -8,6 +9,7 @@ const projects = [
   {
     desc:
       "Integer id malesuada ligula. Cras in fringilla nibh, sed semperturpis. Aliquam efficitur nisl nec.",
+    gif: app,
   },
   {
     desc:
@@ -252,11 +254,33 @@ function HomePage({ modal, showModal }) {
 const Carousel = () => {
   const [translate, setTranslate] = useState(0)
   const [itemWidth, setItemWidth] = useState(300)
+  const [pageNum, setPageNum] = useState(1)
+  let isLeftDisabled = pageNum === 1 ? true : false
+  let isRightDisabled =
+    projects.length - pageNum * MAX_ITEMS <= 0 ? true : false
   const carouselRef = useRef(null)
-  const slideLeft = () => setTranslate(translate + 100)
-  const slideRight = () => setTranslate(translate - 100)
+  const slideLeft = () => {
+    if (isLeftDisabled) return
+    isRightDisabled = false
+    setTranslate(translate + 100)
+    if (pageNum === 2) {
+      isLeftDisabled = true
+    }
+    setPageNum(pageNum - 1)
+  }
+  const slideRight = () => {
+    if (isRightDisabled) return
+    setTranslate(translate - 100)
+    isLeftDisabled = false
+    if (projects.length - (pageNum + 1) * MAX_ITEMS <= 0) {
+      isRightDisabled = true
+    }
+    setPageNum(pageNum + 1)
+  }
   useEffect(() => {
-    setItemWidth((carouselRef?.current?.clientWidth - 105) / 3)
+    setItemWidth(
+      (carouselRef?.current?.clientWidth - MAX_ITEMS * 35) / MAX_ITEMS
+    )
   })
   return (
     <div className="row">
@@ -281,7 +305,12 @@ const Carousel = () => {
                 className="tm-contact-item tm-bg-white-transparent"
                 style={{ width: `${itemWidth || 300}px` }}
               >
-                <i className="fas fa-5x fa-briefcase tm-contact-item-icon"></i>
+                <div className="fas fa-5x fa-briefcase tm-contact-item-icon">
+                  <img
+                    style={{ height: "100%", width: "100%" }}
+                    src={project.gif}
+                  />
+                </div>
                 <p className="mb-0">{project.desc}</p>
               </div>
             ))}
@@ -304,6 +333,7 @@ const Carousel = () => {
                 background: "white",
                 textAlign: "center",
                 cursor: "pointer",
+                opacity: isLeftDisabled ? "0.5" : "1",
               }}
               onClick={slideLeft}
             >
@@ -316,6 +346,7 @@ const Carousel = () => {
                 background: "white",
                 textAlign: "center",
                 cursor: "pointer",
+                opacity: isRightDisabled ? "0.5" : "1",
               }}
               onClick={slideRight}
             >
