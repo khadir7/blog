@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react"
 import Laptop from "../images/mini-profile-bg-01.jpg"
 import Pot from "../images/mini-profile-bg-02.jpg"
 import app from "../images/app.gif"
+import { navigate } from "gatsby"
 // import logo from './logo.svg';
 // import './App.css';
 const MAX_ITEMS = 3
@@ -10,6 +11,7 @@ const projects = [
     desc:
       "Integer id malesuada ligula. Cras in fringilla nibh, sed semperturpis. Aliquam efficitur nisl nec.",
     gif: app,
+    link: "/credit",
   },
   {
     desc:
@@ -307,8 +309,9 @@ const Carousel = () => {
               >
                 <div className="fas fa-5x fa-briefcase tm-contact-item-icon">
                   <img
-                    style={{ height: "100%", width: "100%" }}
+                    style={{ height: "100%", width: "100%", cursor: "pointer" }}
                     src={project.gif}
+                    onClick={() => navigate(project.link)}
                   />
                 </div>
                 <p className="mb-0">{project.desc}</p>

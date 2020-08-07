@@ -3,6 +3,6 @@ module.exports = {
     title: `Pandas Eating Lots`,
   },
   plugins: [
-    `gatsby-plugin-emotion`
+    // `gatsby-plugin-emotion`
   ],
 }
