@@ -2,6 +2,29 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import population from "../json/population"
 
+const colorMap = {
+  Bangladesh: "#3B25FD",
+  Brazil: "#3C31FC",
+  China: "#3245FC",
+  "Czech Republic": "#4183FD",
+  Egypt: "#C838FB",
+  Germany: "#2CCFFD",
+  India: "#8094FC",
+  Indonesia: "#34B4FD",
+  Iran: "#1D22FD",
+  Iraq: "#D262FE",
+  Japan: "#2C2EFC",
+  Pakistan: "#5E5AFE",
+  Philippines: "#3245FC",
+  "Russian Federation": "#5ABCFD",
+  Thailand: "#81ACFC",
+  "The Democratic Rep. Congo": "#9392FC",
+  Mexico: "#AE14FC",
+  Turkey: "#C838FB",
+  "United Kingdom": "#A78FFD",
+  "United States": "#4385FC",
+}
+
 const CountryCell = styled.div`
   width: 250px;
   text-align: center;
@@ -30,7 +53,7 @@ const Bars = () => {
   const [year, setYear] = useState(2016)
   const [scale, setScale] = useState(1392730000)
   const sortPopulation = year => {
-    if(!population[year]) return null
+    if (!population[year]) return null
     let obj2 = population[year]
       .slice()
       .sort((a, b) => b.population - a.population)
@@ -59,36 +82,42 @@ const Bars = () => {
           margin: "0 auto",
         }}
       >
-        <div
-          onClick={() => onclick(false)}
-          style={{
-            width: "28px",
-            borderRadius: "50%",
-            background: "white",
-            textAlign: "center",
-            cursor: "pointer",
-            border: "1px solid #ccc",
-            // opacity: isLeftDisabled ? "0.5" : "1",
-          }}
-          // onClick={slideLeft}
-        >
-          &lt;
-        </div>
-        <div style={{ padding: "0px 10px" }}>{year}</div>
-        <div
-          onClick={() => onclick()}
-          style={{
-            width: "28px",
-            borderRadius: "50%",
-            background: "white",
-            textAlign: "center",
-            cursor: "pointer",
-            border: "1px solid #ccc",
-            // opacity: isRightDisabled ? "0.5" : "1",
-          }}
-          // onClick={slideRight}
-        >
-          &gt;
+        <div style={{ width: `125px`, display: `flex` }}>
+          {population[year - 1] ? (
+            <div
+              onClick={() => onclick(false)}
+              style={{
+                width: "28px",
+                borderRadius: "50%",
+                background: "white",
+                textAlign: "center",
+                cursor: "pointer",
+                border: "1px solid #ccc",
+                // opacity: isLeftDisabled ? "0.5" : "1",
+              }}
+              // onClick={slideLeft}
+            >
+              &lt;
+            </div>
+          ) : null}
+          <div style={{ padding: "0px 10px" }}>{year}</div>
+          {population[year + 1] ? (
+            <div
+              onClick={() => onclick()}
+              style={{
+                width: "28px",
+                borderRadius: "50%",
+                background: "white",
+                textAlign: "center",
+                cursor: "pointer",
+                border: "1px solid #ccc",
+                // opacity: isRightDisabled ? "0.5" : "1",
+              }}
+              // onClick={slideRight}
+            >
+              &gt;
+            </div>
+          ) : null}
         </div>
       </div>
       <section style={{ position: "relative" }}>
@@ -100,7 +129,7 @@ const Bars = () => {
             <Bar>
               <div
                 style={{
-                  background: "blue",
+                  background: colorMap[country.country],
                   height: "10px",
                   transition: "all .2s linear",
                   width: `${getBarWidth(country.population)}%`,

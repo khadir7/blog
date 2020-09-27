@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, useRef } from "react"
+import styled from "styled-components"
 
 const Background = styled.div`
   height: 100vh;
@@ -7,7 +7,7 @@ const Background = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-`;
+`
 
 const Form = styled.div`
   background: #fff;
@@ -18,17 +18,17 @@ const Form = styled.div`
   width: 50%;
   max-width: 500px;
   position: relative;
-`;
+`
 
 const CardFocus = styled.div`
   position: absolute;
   z-index: 3;
   border-radius: 5px;
-  left: ${props => props.left ? `${props.left}` : `0` };
-  top: ${props => props.top ? `${props.top}` : `0` };
-  width: ${props => props.width ? `${props.width}` : `100%` };
-  height: ${props => props.height ? `${props.height}` : `100%` };
-  opacity: ${props => props.opacity ? `${props.opacity}` : `0` };
+  left: ${props => (props.left ? `${props.left}` : `0`)};
+  top: ${props => (props.top ? `${props.top}` : `0`)};
+  width: ${props => (props.width ? `${props.width}` : `100%`)};
+  height: ${props => (props.height ? `${props.height}` : `100%`)};
+  opacity: ${props => (props.opacity ? `${props.opacity}` : `0`)};
   transition: all 0.35s cubic-bezier(0.71, 0.03, 0.56, 0.85);
   pointer-events: none;
   border: 2px solid rgba(255, 255, 255, 0.65);
@@ -45,23 +45,23 @@ const Card = styled.div`
   width: 100%;
   background: url("https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/22.jpeg");
   background-size: contain;
-`;
+`
 
 const CardContent = styled.label`
   height: 60px;
   /* border: 1px solid white; */
-`;
-
+`
+// https://miro.medium.com/max/945/1*pwVhnOs4CohLUcmu3I4Z6A.gif
 const CardContainer = styled.div`
   position: absolute;
-  height: 250px;
-  width: 75%;
-  top: -140px;
+  height: 210px;
+  width: 70%;
+  top: -100px;
   border-radius: 15px;
   left: 50%;
   box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
   transform: translateX(-50%);
-`;
+`
 
 const Input = styled.input`
   width: 100%;
@@ -79,7 +79,7 @@ const Input = styled.input`
 
 const InputContainer = styled.div`
   margin-bottom: 20px;
-`;
+`
 
 const Label = styled.label`
   font-size: 14px;
@@ -89,19 +89,25 @@ const Label = styled.label`
   width: 100%;
   display: block;
   user-select: none;
-`;
+`
 
 const CreditCard = props => {
   const [focusStyle, setFocusStyle] = useState({})
-  const inputEl = useRef();
-  const inputBox = useRef();
-  const updateFocusStyle = ({offsetTop, offsetLeft, offsetWidth, offsetHeight, opacity=1}) => {
+  const inputEl = useRef()
+  const inputBox = useRef()
+  const updateFocusStyle = ({
+    offsetTop,
+    offsetLeft,
+    offsetWidth,
+    offsetHeight,
+    opacity = 1,
+  }) => {
     setFocusStyle({
       top: `${offsetTop}px`,
       left: `${offsetLeft}px`,
       height: `${offsetHeight}px`,
       width: `${offsetWidth}px`,
-      opacity
+      opacity,
     })
   }
   const onInputClick = () =>
@@ -110,21 +116,21 @@ const CreditCard = props => {
       left: `${inputBox.current.offsetLeft}px`,
       height: `${inputBox.current.offsetHeight}px`,
       width: `${inputBox.current.offsetWidth}px`,
-      opacity: 1
+      opacity: 1,
     })
   return (
-    <Background >
+    <Background>
       <Form>
         <CardContainer>
           <Card>
-            <CardContent/>
+            <CardContent />
             <CardContent
               htmlFor="cardNumber"
               ref={inputBox}
-              onClick={(event) => updateFocusStyle(event.target)}
+              onClick={event => updateFocusStyle(event.target)}
             />
-            <CardContent/>
-            <CardFocus {...focusStyle}/>
+            <CardContent />
+            <CardFocus {...focusStyle} />
           </Card>
         </CardContainer>
         <InputBox
@@ -134,14 +140,14 @@ const CreditCard = props => {
           onInputClick={onInputClick}
           onInputBlur={() => setFocusStyle({})}
         />
-        <InputBox label="Card Holders"/>
+        <InputBox label="Card Holders" />
       </Form>
     </Background>
   )
 }
 
-function InputBox({label, inputRef, onInputClick, onInputBlur, id}) {
-  return(
+function InputBox({ label, inputRef, onInputClick, onInputBlur, id }) {
+  return (
     <InputContainer>
       <Label htmlFor={id}>{label}</Label>
       <Input
@@ -154,4 +160,4 @@ function InputBox({label, inputRef, onInputClick, onInputBlur, id}) {
   )
 }
 
-export default CreditCard;
+export default CreditCard
