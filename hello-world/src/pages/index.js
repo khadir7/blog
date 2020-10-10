@@ -39,6 +39,8 @@ function HomePage({ modal, showModal }) {
         style={{
           backgroundImage: `url(${Laptop})`,
           backgroundAttachment: `fixed`,
+          backgroundRepeatX: `no-repeat`,
+          backgroundSize: `cover`,
         }}
         className="parallax-window"
         data-parallax="scroll"
@@ -182,6 +184,8 @@ function HomePage({ modal, showModal }) {
         style={{
           backgroundImage: `url(${Pot})`,
           backgroundAttachment: `fixed`,
+          backgroundRepeatX: `no-repeat`,
+          backgroundSize: `cover`,
         }}
         className="parallax-window"
         data-parallax="scroll"

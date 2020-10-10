@@ -49,7 +49,16 @@ const Card = styled.div`
 
 const CardContent = styled.label`
   height: 60px;
-  /* border: 1px solid white; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+  text-transform: uppercase;
+  padding: 10px 10px 0px;
+  ${props =>
+    props.width &&
+    `
+    width: ${props.width}
+    `}/* border: 1px solid white; */
 `
 // https://miro.medium.com/max/945/1*pwVhnOs4CohLUcmu3I4Z6A.gif
 const CardContainer = styled.div`
@@ -93,8 +102,17 @@ const Label = styled.label`
 
 const CreditCard = props => {
   const [focusStyle, setFocusStyle] = useState({})
+  const [blurFocus, setBlurFocus] = useState(false)
+  const [formFields, setFormFields] = useState({
+    cardNumber: "",
+    cardHolders: "",
+  })
+  console.log(blurFocus)
   const inputEl = useRef()
+  const inputEl1 = useRef()
   const inputBox = useRef()
+  const inputBox1 = useRef()
+  // const setFocusStyle = obj => setTimeout(setFocusStyles(obj), 300)
   const updateFocusStyle = ({
     offsetTop,
     offsetLeft,
@@ -110,14 +128,40 @@ const CreditCard = props => {
       opacity,
     })
   }
-  const onInputClick = () =>
+  const onInputClick = ref => {
+    setBlurFocus(true)
     setFocusStyle({
-      top: `${inputBox.current.offsetTop}px`,
-      left: `${inputBox.current.offsetLeft}px`,
-      height: `${inputBox.current.offsetHeight}px`,
-      width: `${inputBox.current.offsetWidth}px`,
+      top: `${ref.current.offsetTop}px`,
+      left: `${ref.current.offsetLeft}px`,
+      height: `${ref.current.offsetHeight}px`,
+      width: `${ref.current.offsetWidth}px`,
       opacity: 1,
     })
+  }
+  const onInputChange = event => {
+    console.log(formFields)
+    setFormFields(formFields =>
+      // Object.assign(formFields, {
+      //   [event.target.id]: event.target.value,
+      // })
+      ({ ...formFields, [event.target.id]: event.target.value })
+    )
+  }
+  const onInputBlur = () => {
+    // let vm = this;
+    setBlurFocus(false)
+    console.log(blurFocus)
+
+    setTimeout(function () {
+      console.log(blurFocus)
+      setBlurFocus(blurFocus => {
+        if (!blurFocus) {
+          setFocusStyle({})
+        }
+      })
+    }, 300)
+    // vm.isInputFocused = false;
+  }
   return (
     <Background>
       <Form>
@@ -128,8 +172,17 @@ const CreditCard = props => {
               htmlFor="cardNumber"
               ref={inputBox}
               onClick={event => updateFocusStyle(event.target)}
-            />
-            <CardContent />
+            >
+              {formFields["cardNumber"]}
+            </CardContent>
+            <CardContent
+              htmlFor="cardHolders"
+              ref={inputBox1}
+              onClick={event => updateFocusStyle(event.target)}
+              width="75%"
+            >
+              {formFields["cardHolders"]}
+            </CardContent>
             <CardFocus {...focusStyle} />
           </Card>
         </CardContainer>
@@ -138,23 +191,48 @@ const CreditCard = props => {
           id="cardNumber"
           inputRef={inputEl}
           onInputClick={onInputClick}
-          onInputBlur={() => setFocusStyle({})}
+          inputBoxRef={inputBox}
+          onInputBlur={onInputBlur}
+          onInputChange={e => onInputChange(e)}
+          value={formFields["cardNumber"]}
         />
-        <InputBox label="Card Holders" />
+        <InputBox
+          label="Card Holders"
+          id="cardHolders"
+          inputRef={inputEl1}
+          inputBoxRef={inputBox1}
+          onInputClick={onInputClick}
+          onInputBlur={onInputBlur}
+          onInputChange={e => onInputChange(e)}
+          value={formFields["cardHolders"]}
+        />
       </Form>
     </Background>
   )
 }
 
-function InputBox({ label, inputRef, onInputClick, onInputBlur, id }) {
+function InputBox({
+  label,
+  inputRef,
+  onInputClick,
+  inputBoxRef,
+  onInputBlur,
+  onInputChange,
+  value,
+  id,
+}) {
   return (
     <InputContainer>
       <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
         ref={inputRef}
-        onClick={onInputClick}
+        onFocus={() => onInputClick(inputBoxRef)}
         onBlur={onInputBlur}
+        onInput={e => {
+          e.persist()
+          onInputChange(e)
+        }}
       />
     </InputContainer>
   )
