@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react"
 import Laptop from "../images/mini-profile-bg-01.jpg"
 import Pot from "../images/mini-profile-bg-02.jpg"
 import app from "../images/app.gif"
+import population from "../images/population.gif"
+import credit from "../images/credit.gif"
 import { navigate } from "gatsby"
 // import logo from './logo.svg';
 // import './App.css';
@@ -16,10 +18,14 @@ const projects = [
   {
     desc:
       "Integer id malesuada ligula. Cras in fringilla nibh, sed semperturpis. Aliquam efficitur nisl nec.",
+    gif: population,
+    link: "/bars",
   },
   {
     desc:
       "Integer id malesuada ligula. Cras in fringilla nibh, sed semperturpis. Aliquam efficitur nisl nec.",
+    gif: credit,
+    link: "/credit",
   },
   {
     desc:
