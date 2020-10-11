@@ -103,7 +103,7 @@ a:hover {
 }
 
 #tmContact {
-  min-height: 1197px;
+  min-height: 100px;
 }
 
 .tm-welcome-container {
@@ -239,6 +239,7 @@ p {
 }
 
 #tmContactForm {
+  display: none;
   width: 100%;
   max-width: 680px;
   padding: 45px 45px 30px;

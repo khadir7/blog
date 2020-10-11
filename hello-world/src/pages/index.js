@@ -191,6 +191,7 @@ function HomePage({ modal, showModal }) {
         data-parallax="scroll"
       >
         <div className="container-fluid">
+          <div style={{ fontSize: "xx-large" }}>Recent Work</div>
           <Carousel />
           <div className="row">
             <div className="col-12">
@@ -242,7 +243,7 @@ function HomePage({ modal, showModal }) {
             </div>
           </div>
           <div className="row">
-            <footer className="col-12">
+            <footer className="col-12" style={{ display: "none" }}>
               <p className="text-center tm-copyright-text">
                 Copyright 2019 Mini Profile Page - Design:{" "}
                 <a rel="nofollow" href="https://www.facebook.com/templatemo">
@@ -299,6 +300,7 @@ const Carousel = () => {
           style={{
             transform: `translateX(${translate}%)`,
             transition: `transform 500ms ease`,
+            marginBottom: "50px",
           }}
         >
           <div
@@ -324,7 +326,7 @@ const Carousel = () => {
           </div>
         </div>
         <div
-          style={{ padding: "25px", display: "flex", justifyContent: "center" }}
+          style={{ padding: "25px", display: "none", justifyContent: "center" }}
         >
           <div
             style={{
