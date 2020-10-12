@@ -13,7 +13,8 @@ const projects = [
     desc:
       "Dictionary widget, a simple chrome extension which is helpful for search a definition and save custom terms ",
     gif: app,
-    link: "/credit",
+    link: "https://github.com/khadir7/plugins/blob/master/README.md",
+	externalLink: true
   },
   {
     desc:
@@ -319,7 +320,7 @@ const Carousel = () => {
                   <img
                     style={{ height: "100%", width: "100%", cursor: "pointer" }}
                     src={project.gif}
-                    onClick={() => navigate(project.link)}
+                    onClick={() => project.externalLink ? window.location.href = project.link : navigate(project.link)}
                   />
                 </div>
                 <p className="mb-0">{project.desc}</p>
