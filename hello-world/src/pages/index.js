@@ -11,19 +11,19 @@ const MAX_ITEMS = 3
 const projects = [
   {
     desc:
-      "Integer id malesuada ligula. Cras in fringilla nibh, sed semperturpis. Aliquam efficitur nisl nec.",
+      "Dictionary widget, a simple chrome extension which is helpful for search a definition and save custom terms ",
     gif: app,
     link: "/credit",
   },
   {
     desc:
-      "Integer id malesuada ligula. Cras in fringilla nibh, sed semperturpis. Aliquam efficitur nisl nec.",
+      "An animated display of world countries population executed using sample data.",
     gif: population,
     link: "/bars",
   },
   {
     desc:
-      "Integer id malesuada ligula. Cras in fringilla nibh, sed semperturpis. Aliquam efficitur nisl nec.",
+      "Interactive credit card application. (NOT COMPLETED STILL UNDER PROGRESS!)",
     gif: credit,
     link: "/credit",
   },
@@ -72,17 +72,12 @@ function HomePage({ modal, showModal }) {
               <div className="col-md-7 tm-welcome-left-col">
                 <div className="tm-welcome-left">
                   <h2 className="tm-welcome-title">
-                    Welcome to Mini Profile Page
+                    Welcome to My Profile Page
                   </h2>
                   <p className="pb-0">
-                    This is Bootstrap v4.3.1 parallax layout for you. Credit
-                    goes to{" "}
-                    <a rel="nofollow" href="https://www.pexels.com">
-                      Pexels
-                    </a>{" "}
-                    for 2 background images. In odio sapien, commodo id
-                    ullamcorper ac, dignissim at sapien. Nullam leo massa, vaius
-                    ac massa et, tincidunt imperdiet turpis.{" "}
+                    Seeking a position to utilize my skills and abilities in
+                    Information Technology industry that offers professional
+                    growth while being resourceful, innovative and flexible.
                   </p>
                 </div>
               </div>
@@ -90,8 +85,9 @@ function HomePage({ modal, showModal }) {
                 <div className="tm-welcome-right">
                   <i className="fas fa-4x fa-address-card p-3 tm-welcome-icon"></i>
                   <p className="mb-0">
-                    Please spread a word about templatemo website. Anyone can
-                    download free Bootstrap CSS templates.
+                    Passionate front end web developer with 4.5 years of
+                    experience, primarily using Javascript, HTML, CSS and React
+                    js
                   </p>
                 </div>
               </div>
@@ -105,65 +101,65 @@ function HomePage({ modal, showModal }) {
             <div className="col-12">
               <div className="tm-portfolio-item">
                 <div className="tm-portfolio-name text-white tm-bg-green">
-                  Project Manager
+                  Senior Software Engineer
                 </div>
                 <div className="tm-portfolio-description">
                   <h3 className="tm-text-green">
-                    New Company
+                    OvalEdge
                     <span className="tm-title-small">
-                      (2019 January to Present)
+                      (2019 November to Present)
                     </span>
                   </h3>
                   <p className="mb-0">
-                    Nullam a tellus ultricies, ornare purus vel, porttitor
-                    massa. Aliquam facilisis purus ac eros sollicidudin, in
-                    mollis neque facilisis. Duis malesuada, mi non elementum
-                    malesuada.
+                    OvalEdge crawls all your databases, data lake, and your
+                    back-end systems to create an easy-to-use smart data
+                    catalog. Governs tools to define standard business glossary
+                    and other data assets.
                   </p>
                 </div>
               </div>
 
               <div className="tm-portfolio-item">
                 <div className="tm-portfolio-name text-white tm-bg-orange">
-                  Senior UX Designer
+                  Software Engineer
                 </div>
                 <div className="tm-portfolio-description">
                   <h3 className="tm-text-orange">
-                    Studio One
+                    Tricon Infotech Pvt. Ltd.
                     <span className="tm-title-small">
-                      (2017 April to 2018 Dec)
+                      (2017 July to 2019 Nov)
                     </span>
                   </h3>
                   <p className="mb-0">
-                    Phasellus ac nulla egestas, malesuada dolor quis,
-                    scelerisque arcu. Morbi aliquam, nunc vel blandit mattis,
-                    sapien nisl convallis sem, quis hendrerit nisl tellus in
-                    lectus. Proin at nibh bibendum, tincidunt mauris sit amet,
-                    porta risus. Integer id malesuada ligula.
+                    Worked for CK-12 organisation. It is an educational website,
+                    where it's used mostly in U.S. It is helpful for both
+                    students and teachers. The teachers assign assignments so
+                    that the students can attend them and get feedback from the
+                    respective teachers.
                   </p>
                 </div>
               </div>
 
               <div className="tm-portfolio-item">
-                <div className="tm-portfolio-name text-white tm-bg-blue">
-                  Graphic Designer
+                <div className="tm-portfolio-name text-white tm-bg-dark-gray">
+                  Associate Software Engineer
                 </div>
                 <div className="tm-portfolio-description">
-                  <h3 className="tm-text-blue">
-                    Digital Com
+                  <h3 className="tm-text-orange">
+                    Tricon Infotech Pvt. Ltd.
                     <span className="tm-title-small">
-                      (2015 Jan to 2016 Dec)
+                      (2016 July to 2017 July)
                     </span>
                   </h3>
                   <p className="mb-0">
-                    Etiam porta est nisl, consectetur dapibus ante faucibus id.
-                    Nunc ullamcorper a quam eget tincidunt. Proin vehicula
-                    mauris ipsum, euismod dignissim dolor convallis ac.
+                    Was responsible to maintain complex modules which were
+                    implemented in backbone js, jQuery, react js and various
+                    front end technologies
                   </p>
                 </div>
               </div>
 
-              <div className="tm-portfolio-item">
+              <div className="tm-portfolio-item" style={{ display: "none" }}>
                 <div className="tm-portfolio-name text-white tm-bg-dark-gray">
                   Design School
                 </div>
